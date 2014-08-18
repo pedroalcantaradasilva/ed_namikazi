@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package desafiomodificado;
+package e1;
 
 import javax.swing.JOptionPane;
 
@@ -47,7 +47,6 @@ class EstruturaDeDados {
         int j;
         for (j = 0; j < i; j++) {
             if (nome.equals(nomes[j])) {
-                //System.out.println("Vou dar o break");//debug
                 break;
             }
         }
@@ -55,12 +54,9 @@ class EstruturaDeDados {
             return false;
         } else {
             for (int k = j; k+1 < i; k++) {
-                //System.out.println("Entrei no for");//debug
                 nomes[k] = nomes[k + 1];
             }
-            //System.out.println("O i vale " + i);
             i--;
-            //System.out.println("O i vale agora " + i);//debug
             return true;
         }
     }
