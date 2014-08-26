@@ -19,7 +19,7 @@ public class Exercicio02 {
     public static void main(String[] args) {
         // TODO code application logic here
         {
-            int maxSize = 5;             // comentario aqui
+            int maxSize = 6;             // comentario aqui
             EstruturaDados estruturaDados;            // comentario aqui
             estruturaDados = new EstruturaDados(maxSize);  // comentario aqui
             // comentario aqui
@@ -31,20 +31,18 @@ public class Exercicio02 {
 
             estruturaDados.display();                // comentario aqui
 
-            String searchKey = JOptionPane.showInputDialog(null, "Digite o nome que deseja deletar");  // comentario aqui
-            Pessoa found;
-            found = estruturaDados.find(searchKey);
-            if (found != null) {
-                System.out.print("Encontrado");
-                found.displayPessoa();
+            String searchKey = JOptionPane.showInputDialog(null, "Digite um nome para buscar");  // comentario aqui
+            int resultado = estruturaDados.find(searchKey);
+            if (resultado != null) {
+                System.out.print("\nEncontrado");
+                pessoa.displayPessoa();
             } else {
-                System.out.println("Não encontrado " + searchKey);
+                System.out.println("\nNão encontrado " + searchKey);
             }
-
-            String deletar = JOptionPane.showInputDialog(null, "Digite um nome para deletar");
-            estruturaDados.delete(deletar);          // comentario aqui
-
-            estruturaDados.display();// comentario aqui
-        }  // end main()
-    }  // end class ClassDataApp
+            String deletarNome = JOptionPane.showInputDialog(null, "Digite um nome para deletar");
+            if (!estruturaDados.delete(deletarNome))
+                System.out.println("\nNao encontrado");
+            estruturaDados.display();
+        }
+    }
 }

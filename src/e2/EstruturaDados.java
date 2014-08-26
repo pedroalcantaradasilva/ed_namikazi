@@ -20,45 +20,78 @@ public class EstruturaDados {
         vetorPessoas = new Pessoa[max];                 // cria o vetor ...
         nElems = 0;                        // inicialmente sem itens ...
     }
-    
-    public Pessoa find(String searchName)
-      {                              // comentario aqui
-      int j;
-      for(j=0; j<nElems; j++)            // comentario aqui
-         if( vetorPessoas[j].getNome().equals(searchName) )  // comentario aqui
-            break;                       // comentario aqui
-      if(j == nElems)                    // comentario aqui
-         return null;                    // comentario aqui
-      else
-         return vetorPessoas[j];                    // comentario aqui
-      }  // end find()
-    
-    public void insert(String nome, String profissao, int idade)
-      {
-      vetorPessoas[nElems] = new Pessoa(nome, profissao, idade);
-      nElems++;                          // comentario aqui
-      }
-    
-    public boolean delete(String searchName)
-      {                              // comentario aqui
-      int j;
-      for(j=0; j<nElems; j++)            // comentario aqui
-         if( vetorPessoas[j].getNome().equals(searchName) )
-            break;
-      if(j==nElems)                     // comentario aqui
-         return false;
-      else                               // comentario aqui
-         {
-         for(int k=j; k<nElems; k++)    // comentario aqui
-            vetorPessoas[k] = vetorPessoas[k+1];
-         nElems--;                       // comentario aqui
-         return true;
-         }
-      }  // end delete()
-    
-    public void display()            // comentario aqui
-      {
-      for(int j=0; j<nElems; j++)       // comentario aqui
-         vetorPessoas[j].displayPessoa();// comentario aqui
-      }
+
+    public int size() {
+        return nElems;
+    }
+
+    public int find(String searchName) {
+        int lowerBound = 0;
+        int upperBound = nElems - 1;
+        int curIn;
+
+        while (true) {
+            curIn = (lowerBound + upperBound) / 2;
+            if (vetorPessoas[curIn].equals(searchName)) {
+                return curIn;
+            } else if (lowerBound > upperBound) {
+                return nElems;
+            } else {
+                if (vetorPessoas[curIn].compareTo(searchName)) {
+                    lowerBound = curIn + 1;
+                } else {
+                    upperBound = curIn - 1;
+                }
+            }
+        }
+    }
+
+    public void insert(String nome, String profissao, int idade) {
+        int j;
+        for (j = 0; j < nElems; j++) // localiza onde esse elemento se encaixa
+        {
+            if (vetorPessoas[j].compareTo(nome))
+            {
+                break;
+            }
+        }
+        for (int k = nElems; k > j; k--) // move os elementos maiores uma posição p/ frente
+        {
+            vetorPessoas[k] = vetorPessoas[k - 1];
+        }
+        vetorPessoas[j] = vetorPessoas[nElems];
+        nElems++;
+        // comentario aqui
+    }
+
+    public boolean delete(String searchName) {                              // comentario aqui
+
+        int j;
+        for (j = 0; j < nElems; j++) // comentario aqui
+        {
+            if (vetorPessoas[j].getNome().equals(searchName)) {
+                break;
+            }
+        }
+        if (j == nElems) // comentario aqui
+        {
+            return false;
+        } else // comentario aqui
+        {
+            for (int k = j; k < nElems; k++) // comentario aqui
+            {
+                vetorPessoas[k] = vetorPessoas[k + 1];
+            }
+            nElems--;                       // comentario aqui
+            return true;
+        }
+    }  // end delete()
+
+    public void display() // comentario aqui
+    {
+        for (int j = 0; j < nElems; j++) // comentario aqui
+        {
+            vetorPessoas[j].displayPessoa();// comentario aqui
+        }
+    }
 }

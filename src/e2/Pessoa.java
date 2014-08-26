@@ -29,5 +29,9 @@ public class Pessoa {
     public String getNome() {
         return nome;
     }   
+
+    boolean compareTo(String searchName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
