@@ -22,16 +22,11 @@ public class Pessoa {
 
     public void displayPessoa() {
         System.out.print("\nNome : " + nome);
-        System.out.print("\nProfissão : " + profissao);
-        System.out.println("\nIdade: " + idade);
+        System.out.print("  Profissão : " + profissao);
+        System.out.println("    Idade: " + idade);
     }
 
     public String getNome() {
         return nome;
-    }   
-
-    boolean compareTo(String searchName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }
