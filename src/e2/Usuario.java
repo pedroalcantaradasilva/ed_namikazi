@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author Aluno
  */
-public class Exercicio02 {
+public class Usuario {
 
     /**
      * @param args the command line arguments
@@ -19,29 +19,27 @@ public class Exercicio02 {
     public static void main(String[] args) {
         // TODO code application logic here
         {
-            int maxSize = 6;             // comentario aqui
-            EstruturaDados estruturaDados;            // comentario aqui
-            estruturaDados = new EstruturaDados(maxSize);  // comentario aqui
-            // comentario aqui
+            int maxSize = 6;
+            EstruturaDados estruturaDados;
+            estruturaDados = new EstruturaDados(maxSize);
             estruturaDados.insert("Jonatas", "Desenvolvedor", 22);
             estruturaDados.insert("Alexandre", "Professor", 34);
             estruturaDados.insert("Peter", "DBA", 44);
             estruturaDados.insert("Jabes", "Concultor", 55);
             estruturaDados.insert("Alarick", "Analisa de Sistemas", 38);
-
-            estruturaDados.display();                // comentario aqui
-
-            String searchKey = JOptionPane.showInputDialog(null, "Digite um nome para buscar");  // comentario aqui
-            int resultado = estruturaDados.find(searchKey);
-            if (resultado != null) {
-                System.out.print("\nEncontrado");
-                pessoa.displayPessoa();
+            estruturaDados.display();
+            int resultado = estruturaDados.find(JOptionPane.showInputDialog(null, "Digite um nome para procurar"));
+            if (resultado != estruturaDados.size()) {
+                System.out.print("\nENCONTRADO\n");
+                estruturaDados.displayUnico(resultado);
             } else {
-                System.out.println("\nNão encontrado " + searchKey);
+                System.out.println("\nNÃO ENCONTRADO\n");
             }
             String deletarNome = JOptionPane.showInputDialog(null, "Digite um nome para deletar");
-            if (!estruturaDados.delete(deletarNome))
-                System.out.println("\nNao encontrado");
+            if (!estruturaDados.delete(deletarNome)) {
+                System.out.println("\nNÃO ENCONTRADO\n");
+            }
+            System.out.println("\nObjetos restantes no ARRAY:");
             estruturaDados.display();
         }
     }

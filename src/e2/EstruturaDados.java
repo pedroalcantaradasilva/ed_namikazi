@@ -32,12 +32,12 @@ public class EstruturaDados {
 
         while (true) {
             curIn = (lowerBound + upperBound) / 2;
-            if (vetorPessoas[curIn].equals(searchName)) {
+            if (vetorPessoas[curIn].getNome().equals(searchName)) {
                 return curIn;
             } else if (lowerBound > upperBound) {
                 return nElems;
             } else {
-                if (vetorPessoas[curIn].compareTo(searchName)) {
+                if (vetorPessoas[curIn].getNome().compareTo(searchName) < 0) {
                     lowerBound = curIn + 1;
                 } else {
                     upperBound = curIn - 1;
@@ -50,8 +50,7 @@ public class EstruturaDados {
         int j;
         for (j = 0; j < nElems; j++) // localiza onde esse elemento se encaixa
         {
-            if (vetorPessoas[j].compareTo(nome))
-            {
+            if (vetorPessoas[j].getNome().compareTo(nome) >= 0) {
                 break;
             }
         }
@@ -59,33 +58,27 @@ public class EstruturaDados {
         {
             vetorPessoas[k] = vetorPessoas[k - 1];
         }
-        vetorPessoas[j] = vetorPessoas[nElems];
+        Pessoa pessoa = new Pessoa(nome, profissao, idade);
+        vetorPessoas[j] = pessoa;
         nElems++;
-        // comentario aqui
     }
 
     public boolean delete(String searchName) {                              // comentario aqui
-
-        int j;
-        for (j = 0; j < nElems; j++) // comentario aqui
-        {
-            if (vetorPessoas[j].getNome().equals(searchName)) {
-                break;
-            }
-        }
-        if (j == nElems) // comentario aqui
-        {
+        int result = find(searchName);
+        if (result == nElems) {
             return false;
-        } else // comentario aqui
-        {
-            for (int k = j; k < nElems; k++) // comentario aqui
-            {
+        } else {
+            for (int k = result; k < nElems; k++) {
                 vetorPessoas[k] = vetorPessoas[k + 1];
             }
-            nElems--;                       // comentario aqui
+            nElems--;
             return true;
         }
-    }  // end delete()
+    }
+
+    public void displayUnico(int index) {
+        vetorPessoas[index].displayPessoa();
+    }
 
     public void display() // comentario aqui
     {
